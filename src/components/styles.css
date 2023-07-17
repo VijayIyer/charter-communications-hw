@@ -1,0 +1,19 @@
+/* styles from https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  display: block;
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+}

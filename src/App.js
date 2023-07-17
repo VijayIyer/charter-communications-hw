@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import TransactionsTable from "./components/TransactionsTable";
+import RewardsTable from "./components/RewardsTable";
+import { useState } from "react";
+import { TransactionsProvider } from "./context/transactionsContext";
 function App() {
+  const [showRewardsTable, setShowRewards] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <TransactionsProvider>
+        <TransactionsTable />
+
+        {showRewardsTable ? (
+          <RewardsTable />
+        ) : (
+          <button onClick={() => setShowRewards((value) => !value)}>
+            Show Rewards
+          </button>
+        )}
+      </TransactionsProvider>
     </div>
   );
 }

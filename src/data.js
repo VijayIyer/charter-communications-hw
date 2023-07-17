@@ -1,47 +1,50 @@
-export const transactions = [
-  {
-    customer: "A",
-    amount: 100,
-    date: "07/01/2023",
-  },
-  {
-    customer: "B",
-    amount: 150,
-    date: "07/15/2023",
-  },
-  {
-    customer: "A",
-    amount: 176,
-    date: "07/20/2023",
-  },
-  {
-    customer: "C",
-    amount: 105,
-    date: "07/25/2023",
-  },
-  {
-    customer: "C",
-    amount: 200,
-    date: "08/20/2023",
-  },
-  {
-    customer: "A",
-    amount: 80,
-    date: "08/29/2023",
-  },
-  {
-    customer: "B",
-    amount: 135,
-    date: "09/05/2023",
-  },
-  {
-    customer: "C",
-    amount: 65,
-    date: "09/28/2023",
-  },
-  {
-    customer: "A",
-    amount: 55,
-    date: "09/29/2023",
-  },
-];
+const allowedAmountRange = {
+  min: 0,
+  max: 200,
+};
+const allowedTransactionDateRange = {
+  min: new Date(2023, 7, 1),
+  max: new Date(2023, 9, 30),
+};
+const numberOfTransactions = 20;
+const customers = ["A", "B", "C", "D", "E", "F", "G"];
+
+class Transaction {
+  constructor(transactionId, customer, date, amount) {
+    this.id = transactionId;
+    this.customer = customer;
+    this.date = date;
+    this.amount = amount;
+  }
+}
+function chooseRandomItemFromArray(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+function getRandomDate(from, to) {
+  from = from.getTime();
+  to = to.getTime();
+  return new Date(from + Math.random() * (to - from));
+}
+
+const createData = () => {
+  let transactions = [];
+  for (let i = 0; i < numberOfTransactions; i++) {
+    transactions.push(
+      new Transaction(
+        i,
+        chooseRandomItemFromArray(customers),
+        getRandomDate(
+          allowedTransactionDateRange.min,
+          allowedTransactionDateRange.max
+        ),
+        getRandomArbitrary(allowedAmountRange.min, allowedAmountRange.max)
+      )
+    );
+  }
+  //   console.log(JSON.stringify(transactions));
+  return transactions;
+};
+export { createData };
