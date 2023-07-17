@@ -9,10 +9,11 @@ export default function TransactionsTable() {
   if (loadingTransactions) return <h1>Loading Transactions...</h1>;
   return (
     <>
-      <h2>Transactions:</h2>
+      <h3>Transactions:</h3>
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Customer Name</th>
             <th>Date</th>
             <th>Amount</th>
@@ -20,9 +21,13 @@ export default function TransactionsTable() {
         </thead>
 
         <tbody>
-          {transactionsData.map((transaction) => {
+          {transactionsData.map((transaction, index) => {
             return (
-              <Transaction key={transaction.id} transaction={transaction} />
+              <Transaction
+                key={transaction.id}
+                rowNumber={index + 1}
+                transaction={transaction}
+              />
             );
           })}
         </tbody>

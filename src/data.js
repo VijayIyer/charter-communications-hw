@@ -6,7 +6,7 @@ const allowedTransactionDateRange = {
   min: new Date(2023, 7, 1),
   max: new Date(2023, 9, 30),
 };
-const numberOfTransactions = 20;
+const numberOfTransactions = 500;
 const customers = ["A", "B", "C", "D", "E", "F", "G"];
 
 class Transaction {

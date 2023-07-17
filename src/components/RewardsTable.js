@@ -1,10 +1,12 @@
 import { transactionsContext } from "../context/transactionsContext";
-import { monthNames } from "../constants";
+import { monthNames } from "../utils/constants";
 import getUniqueElements from "../utils/getUniqueElements";
 import "./styles.css";
 import { useContext, useState, useEffect } from "react";
 import Reward from "./Reward";
 export default function RewardsTable() {
+  const [showRewardsTable, setShowRewards] = useState(false);
+
   const { transactionsData } = useContext(transactionsContext);
   const [months, setMonths] = useState([]);
   const [customers, setCustomers] = useState([]);
@@ -26,9 +28,16 @@ export default function RewardsTable() {
       );
     }
   }, [transactionsData]);
+  if (!showRewardsTable)
+    return (
+      <button onClick={() => setShowRewards((value) => !value)}>
+        Show Rewards
+      </button>
+    );
+
   return (
     <>
-      <h2>Rewards:</h2>
+      <h3>Rewards:</h3>
       <table>
         <thead>
           <tr>
@@ -42,7 +51,7 @@ export default function RewardsTable() {
 
         <tbody>
           {customers.map((customer) => (
-            <Reward customer={customer} months={months} />
+            <Reward key={customer} customer={customer} months={months} />
           ))}
         </tbody>
       </table>

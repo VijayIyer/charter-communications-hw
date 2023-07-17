@@ -1,21 +1,14 @@
 import TransactionsTable from "./components/TransactionsTable";
 import RewardsTable from "./components/RewardsTable";
-import { useState } from "react";
+import Refresh from "./components/Refresh";
 import { TransactionsProvider } from "./context/transactionsContext";
 function App() {
-  const [showRewardsTable, setShowRewards] = useState(false);
   return (
     <div className='App'>
       <TransactionsProvider>
+        <Refresh />
         <TransactionsTable />
-
-        {showRewardsTable ? (
-          <RewardsTable />
-        ) : (
-          <button onClick={() => setShowRewards((value) => !value)}>
-            Show Rewards
-          </button>
-        )}
+        <RewardsTable />
       </TransactionsProvider>
     </div>
   );

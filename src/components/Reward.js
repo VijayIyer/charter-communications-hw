@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 import { transactionsContext } from "../context/transactionsContext";
 export default function Reward({ customer, months }) {
   const { transactionsData } = useContext(transactionsContext);
@@ -17,21 +17,28 @@ export default function Reward({ customer, months }) {
     }
   }, [transactionsData, customer]);
   const getRewardForAmount = (amount) =>
-    amount > 100 ? 2 : amount > 50 && amount < 100 ? 1 : 0;
-  const getRewardForMonth = (customer, month) => {
-    if (transactionsData) {
-      transactionsData
-        .filter(
-          (transaction) =>
-            transaction.customer === customer &&
-            transaction.date.getMonth() === month
-        )
-        .reduce((total, transaction) => {
-          console.log(transaction.date.getMonth(), month);
-          return total + getRewardForAmount(transaction.amount);
-        }, 0);
-    }
-  };
+    amount > 100
+      ? 2 * (amount - 100)
+      : amount > 50 && amount < 100
+      ? amount - 50
+      : 0;
+  const getRewardForMonth = useCallback(
+    (customer, month) => {
+      if (transactionsData) {
+        return transactionsData
+          .filter(
+            (transaction) =>
+              transaction.customer === customer &&
+              transaction.date.getMonth() === month
+          )
+          .reduce((total, transaction) => {
+            return total + getRewardForAmount(transaction.amount);
+          }, 0);
+      }
+      return 0;
+    },
+    [transactionsData]
+  );
   return (
     <tr>
       <td>{customer}</td>
