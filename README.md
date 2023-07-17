@@ -21,4 +21,4 @@ _*Given a record of every transaction during a three month period, calculate the
 4. Then the data is presented in 2 tables TransactionsTable and RewardsTable
 5. The TransactionsTable component displays the transactions with date being formatted as **_Month Date, Year_**
 6. Then the RewardsTable component displays a row for every unique customer, with a column for every month. (There should only be 3 month columns as per requirements)
-7.
+7. Each row in the RewardsTable component is rendered using customer and month information, and by using the transactionsData available through context. The rewards calculation logic is in the form of a function in this component.
