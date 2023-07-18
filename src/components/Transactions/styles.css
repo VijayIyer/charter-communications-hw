@@ -1,4 +1,10 @@
 /* styles from https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro */
+.transactions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+}
 
 .transactions__table {
   border-collapse: collapse;
@@ -8,7 +14,7 @@
   margin-bottom: 1em;
 }
 .transactions__table th {
-  background-color: black;
+  background-color: var(--header-bg-color);
 }
 
 .transactions__table td,
@@ -21,11 +27,6 @@ th {
   padding: 8px;
   text-align: center;
 }
-.transactions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .transactions__regenerate-btn {
   background-color: var(--primary-bg-color);
@@ -37,6 +38,7 @@ th {
 }
 .transactions__filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
 }

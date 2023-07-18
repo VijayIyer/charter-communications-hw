@@ -1,13 +1,18 @@
 :root {
-  --primary-bg-color: rgb(20, 71, 129);
+  --primary-bg-color: rgb(65, 106, 203);
   --primary-font-color: aliceblue;
   --font-family: arial, sans-serif;
+  --header-bg-color: rgb(20, 10, 10);
   --font-size: 12px;
 }
 * {
   font-family: var(--font-family);
   font-size: var(--font-size);
 }
+body {
+  padding-bottom: 3em;
+}
 h3 {
   margin-top: 0;
+  margin-bottom: 0;
 }

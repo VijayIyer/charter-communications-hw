@@ -25,10 +25,13 @@ export default function MonthFilter() {
       <select
         className='transactions__month-filter'
         onChange={(e) => setMonthFilter(e.target.value)}
+        value={monthFilter}
       >
-        <option value={null}>--Select a month ---</option>
+        <option value=''>--Select a month ---</option>
         {months.map((month) => (
-          <option key={month}>{month}</option>
+          <option key={month} value={month}>
+            {month}
+          </option>
         ))}
       </select>
     </div>

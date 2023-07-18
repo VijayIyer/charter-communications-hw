@@ -32,31 +32,38 @@ export default function RewardsTable() {
   }, [transactionsData]);
   if (!showRewardsTable)
     return (
-      <button onClick={() => setShowRewards((value) => !value)}>
-        Show Rewards
-      </button>
+      <div className='rewards'>
+        <button
+          className='rewards__show-btn'
+          onClick={() => setShowRewards((value) => !value)}
+        >
+          Show Rewards
+        </button>
+      </div>
     );
 
   return (
-    <>
+    <div className='rewards'>
       <h3>Rewards:</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Customer Name</th>
-            {months.map((month) => (
-              <th>{monthNames[month - 1]}</th>
-            ))}
-            <th>Total</th>
-          </tr>
-        </thead>
+      <div className='rewards__table-wrapper'>
+        <table className='rewards__table'>
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              {months.map((month) => (
+                <th key={month}>{monthNames[month - 1]}</th>
+              ))}
+              <th>Total</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {customers.map((customer) => (
-            <Reward key={customer} customer={customer} months={months} />
-          ))}
-        </tbody>
-      </table>
-    </>
+          <tbody>
+            {customers.map((customer) => (
+              <Reward key={customer} customer={customer} months={months} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }

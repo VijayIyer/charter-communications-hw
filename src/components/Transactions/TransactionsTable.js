@@ -18,7 +18,7 @@ export default function TransactionsTable() {
         );
       })
       .filter((transaction) => {
-        if (!monthFilter) return true;
+        if (monthFilter === "") return true;
         return (
           monthNames[moment(transaction.date).format("M") - 1] === monthFilter
         );
