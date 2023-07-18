@@ -25,7 +25,7 @@ _*Given a record of every transaction during a three month period, calculate the
 
 **Steps to solve the problem**
 
-1. Created a function to generate random a list of transactions, where each transaction consists of a customer, date of the transaction and amount of the transaction. The `createData` function is exported from `data.js`
+1. Created a function to generate random a list of transactions, where each transaction consists of a customer, date of the transaction and amount of the transaction. The `createData` function is exported from `data.js`. 100 random transactions are generated using 8 different customer names, and random amounts between 0 - 200.
 2. The api directory contains the `fetchTransactionsData` file which simulates behaviour of an async API call by returning a Promise which resolves with a slight delay to return the generated data
 3. The transactionsData is made available throughout the application using `dataContext`.
 4. Then the transactions data is presented in `TransactionsTable` component and calculated rewards in `RewardsTable` component.
