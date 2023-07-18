@@ -1,3 +1,10 @@
+**Instructions to run application**
+
+- clone the repo using `git clone https://github.com/VijayIyer/charter-communications-hw.git`
+- install dependencies using npm install or npm i
+- go into the application directory
+- type npm start in the terminal or alternatively npm run build and open http://localhost:3000
+
 **Problem Statement**
 
 _*A retailer offers a rewards program to its customers, awarding points based on each recorded purchase.*_
