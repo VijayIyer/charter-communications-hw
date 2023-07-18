@@ -24,8 +24,9 @@ _*Given a record of every transaction during a three month period, calculate the
 
 1. Created a function to generate random a list of transactions, where each transaction consists of a customer, date of the transaction and amount of the transaction. The `createData` function is exported from `data.js`
 2. The api directory contains the `fetchTransactionsData` file which simulates behaviour of an async API call by returning a Promise which resolves with a slight delay to return the generated data
-3. The transactionsData is made available throughout the application using `transactionsContext`.
-4. Then the data is presented in 2 tables `TransactionsTable` and `RewardsTable`
-5. The `TransactionsTable` component displays the transactions with date being formatted as **_Month Date, Year_**
-6. Then the `RewardsTable` component displays a row for every unique customer, with a column for every month. (There should only be 3 month columns as per requirements)
-7. Each row in the `RewardsTable` component is rendered using customer and month information, and by using the transactionsData available through context. The rewards calculation logic is in the form of a function in this component.
+3. The transactionsData is made available throughout the application using `dataContext`.
+4. Then the transactions data is presented in `TransactionsTable` component and calculated rewards in `RewardsTable` component.
+5. Additional components in Transactions component are `Search` and `MonthFilter`, these are to filter the presentation of transactions by customer name and/or month and cross-verify the rewards amounts. These components control the filter applied to present transactions data through the `transactionsContext`.
+6. The `TransactionsTable` component displays the transactions with date being formatted as **_Month Date, Year_**
+7. Then the `RewardsTable` component displays a row for every unique customer, with a column for every month. (There should only be 3 month columns as per requirements)
+8. Each row in the `RewardsTable` component is rendered using customer and month information, and by using the transactionsData available through context. The rewards calculation logic is in the form of a function in this component.
