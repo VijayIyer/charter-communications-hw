@@ -4,10 +4,14 @@
   --font-family: arial, sans-serif;
   --header-bg-color: rgb(20, 10, 10);
   --font-size: 12px;
+  --highlight-color: rgb(199, 199, 27);
 }
 * {
   font-family: var(--font-family);
   font-size: var(--font-size);
+}
+::selection {
+  background: var(--highlight-color);
 }
 body {
   padding-bottom: 3em;
