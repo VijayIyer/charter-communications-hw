@@ -44,7 +44,7 @@ export default function Reward({ customer, months }) {
     <tr>
       <td>{customer}</td>
       {months.map((month) => (
-        <td>{getRewardForMonth(customer, month)}</td>
+        <td key={month}>{getRewardForMonth(customer, month)}</td>
       ))}
       <td>{total}</td>
     </tr>
