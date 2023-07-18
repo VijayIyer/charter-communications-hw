@@ -1,0 +1,59 @@
+/* styles from https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro */
+
+.transactions__table {
+  border-collapse: collapse;
+  width: 100%;
+  display: block;
+  height: 200px;
+  margin-bottom: 1em;
+}
+.transactions__table th {
+  background-color: black;
+}
+
+.transactions__table td,
+th {
+  border: 1px solid #dddddd;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-font-color);
+  cursor: pointer;
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+}
+.transactions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transactions__regenerate-btn {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-font-color);
+  cursor: pointer;
+  border: none;
+  border-radius: 1em;
+  padding: 1em;
+}
+.transactions__filters {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+.transactions__filters * {
+  border: none;
+  margin: 2px;
+  border-radius: 1em;
+  padding: 1em;
+}
+.transactions__search-customer {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-font-color);
+}
+.transactions__table-wrapper {
+  overflow-y: auto;
+}
+.transactions__month-filter {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-font-color);
+}

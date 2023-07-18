@@ -1,14 +1,12 @@
-import { monthNames } from "../utils/constants";
+import { monthNames } from "../../utils/constants";
+import moment from "moment";
 export default function Transaction({ rowNumber, transaction }) {
   const { customer, date, amount } = transaction;
-
   return (
     <tr>
       <td>{rowNumber}.</td>
       <td>{customer}</td>
-      <td>{`${
-        monthNames[date.getMonth()]
-      } ${date.getDate()}, ${date.getYear()}`}</td>
+      <td>{`${moment(date).format("DD MMM, YYYY")}`}</td>
       <td>{amount}</td>
     </tr>
   );

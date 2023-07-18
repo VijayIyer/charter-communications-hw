@@ -1,7 +1,8 @@
 import { useContext, useState, useEffect, useCallback } from "react";
-import { transactionsContext } from "../context/transactionsContext";
+import { dataContext } from "../../context/dataContext";
+import moment from "moment";
 export default function Reward({ customer, months }) {
-  const { transactionsData } = useContext(transactionsContext);
+  const { transactionsData } = useContext(dataContext);
   const [total, setTotal] = useState(0);
   useEffect(() => {
     if (transactionsData) {
@@ -29,7 +30,7 @@ export default function Reward({ customer, months }) {
           .filter(
             (transaction) =>
               transaction.customer === customer &&
-              transaction.date.getMonth() === month
+              moment(transaction.date).format("M") === month
           )
           .reduce((total, transaction) => {
             return total + getRewardForAmount(transaction.amount);

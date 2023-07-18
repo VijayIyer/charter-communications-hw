@@ -1,0 +1,13 @@
+:root {
+  --primary-bg-color: rgb(20, 71, 129);
+  --primary-font-color: aliceblue;
+  --font-family: arial, sans-serif;
+  --font-size: 12px;
+}
+* {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+h3 {
+  margin-top: 0;
+}

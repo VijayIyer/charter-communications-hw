@@ -1,15 +1,21 @@
-import TransactionsTable from "./components/TransactionsTable";
-import RewardsTable from "./components/RewardsTable";
-import Refresh from "./components/Refresh";
+import Transactions from "./components/Transactions";
+import TransactionsTable from "./components/Transactions/TransactionsTable";
+import RewardsTable from "./components/Rewards/RewardsTable";
+import Regenerate from "./components/Transactions/Regenerate";
+import { DataProvider } from "./context/dataContext";
 import { TransactionsProvider } from "./context/transactionsContext";
+import Search from "./components/Transactions/Search";
+import MonthFilter from "./components/Transactions/MonthFilter";
 function App() {
   return (
     <div className='App'>
-      <TransactionsProvider>
-        <Refresh />
-        <TransactionsTable />
+      <DataProvider>
+        <TransactionsProvider>
+          <Transactions />
+        </TransactionsProvider>
+
         <RewardsTable />
-      </TransactionsProvider>
+      </DataProvider>
     </div>
   );
 }

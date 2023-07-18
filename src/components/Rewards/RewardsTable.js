@@ -1,20 +1,22 @@
-import { transactionsContext } from "../context/transactionsContext";
-import { monthNames } from "../utils/constants";
-import getUniqueElements from "../utils/getUniqueElements";
+import { dataContext } from "../../context/dataContext";
+import { getUniqueElements, monthNames } from "../../utils";
 import "./styles.css";
 import { useContext, useState, useEffect } from "react";
+import moment from "moment";
 import Reward from "./Reward";
 export default function RewardsTable() {
   const [showRewardsTable, setShowRewards] = useState(false);
 
-  const { transactionsData } = useContext(transactionsContext);
+  const { transactionsData } = useContext(dataContext);
   const [months, setMonths] = useState([]);
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     if (transactionsData) {
       setMonths(
         getUniqueElements(
-          transactionsData.map((transaction) => transaction.date.getMonth())
+          transactionsData.map((transaction) =>
+            moment(transaction.date).format("M")
+          )
         )
       );
     }
@@ -43,7 +45,7 @@ export default function RewardsTable() {
           <tr>
             <th>Customer Name</th>
             {months.map((month) => (
-              <th>{monthNames[month]}</th>
+              <th>{monthNames[month - 1]}</th>
             ))}
             <th>Total</th>
           </tr>
