@@ -25,8 +25,8 @@ _*Given a record of every transaction during a three month period, calculate the
 
 **Steps to solve the problem**
 
-1. Created a function to generate random a list of transactions, where each transaction consists of a customer, date of the transaction and amount of the transaction. The `createData` function is exported from `data.js`. 100 random transactions are generated using 8 different customer names, and random amounts between 0 - 200. There is also a saved file `transactions.json` which has one run of `createData` function.
-2. The api directory contains the `fetchTransactionsData` file which simulates behaviour of an async API call by returning a Promise which resolves with a slight delay to return the generated data
+1. Created a function to generate random a list of transactions, where each transaction consists of a customer, date of the transaction and amount of the transaction. The `createData` function is exported from `data.js`. 100 random transactions are generated using 8 different customer names, and random amounts between 0 - 200. There is also a saved file **`transactions.json`** which has transactions generated from one run of `createData` function.
+2. The api directory contains the `fetchTransactionsData` file which simulates behaviour of an async API call by returning a Promise which resolves with a slight delay to return the generated data.
 3. The transactionsData is made available throughout the application using `dataContext`.
 4. Then the transactions data is presented in `TransactionsTable` component and calculated rewards in `RewardsTable` component.
 5. Additional components in Transactions component are `Search` and `MonthFilter`, these are to filter the presentation of transactions by customer name and/or month and cross-verify the rewards amounts. These components control the filter applied to present transactions data through the `transactionsContext`.
