@@ -5,27 +5,37 @@
   align-items: center;
   margin: 5px;
 }
-
 .transactions__table {
-  border-collapse: collapse;
-  width: 100%;
+  overflow-y: scroll;
   display: block;
   height: 200px;
-  margin-bottom: 1em;
+  border-collapse: collapse;
+  margin: 25px 0;
+  border-radius: 5px 5px 0 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.transactions__table th {
-  background-color: var(--header-bg-color);
+.transactions__table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+.transactions__table th,
+.transactions__table td {
+  padding: 12px 15px;
+}
+.transactions__table tbody tr {
+  border-bottom: 1px solid #dddddd;
 }
 
-.transactions__table td,
-th {
-  border: 1px solid #dddddd;
-  background-color: var(--primary-bg-color);
-  color: var(--primary-font-color);
-  cursor: pointer;
-  text-align: left;
-  padding: 8px;
-  text-align: center;
+.transactions__table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.transactions__table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
 }
 
 .transactions__regenerate-btn {
@@ -49,11 +59,39 @@ th {
   padding: 1em;
 }
 .transactions__search-customer {
-  background-color: var(--primary-bg-color);
-  color: var(--primary-font-color);
+  position: relative;
+  margin-bottom: 20px;
 }
-.transactions__table-wrapper {
-  overflow-y: auto;
+.transactions__search-customer__label {
+  color: #009879;
+  font-size: 13px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 15px;
+  top: 11px;
+  padding: 0 5px;
+  background: #fff;
+  transition: 0.2s ease all;
+}
+.transactions__search-customer__input {
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: 0 20px;
+  background: #fff;
+  color: #323840;
+  border: 1px solid #009879;
+  border-radius: 4px;
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+    ~ .transactions__search-customer__label {
+      top: -8px;
+      font-size: 13px;
+    }
+  }
 }
 .transactions__month-filter {
   background-color: var(--primary-bg-color);

@@ -21,7 +21,7 @@ export default function MonthFilter() {
   }, [transactionsData]);
   return (
     <div>
-      <label>See Transactions in Month:</label>
+      <label>Month</label>
       <select
         className='transactions__month-filter'
         onChange={(e) => setMonthFilter(e.target.value)}

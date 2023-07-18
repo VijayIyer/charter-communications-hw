@@ -1,7 +1,5 @@
 :root {
-  --primary-bg-color: rgb(18, 18, 48);
-  --primary-font-color: aliceblue;
-  --font-family: arial, sans-serif;
+  --font-family: Noto sans;
   --header-bg-color: rgb(34, 21, 21);
   --font-size: 12px;
   --highlight-color: rgb(191, 191, 51);
@@ -9,7 +7,6 @@
 }
 * {
   font-family: var(--font-family);
-  font-size: var(--font-size);
 }
 ::selection {
   background: var(--highlight-color);
@@ -20,7 +17,4 @@ body {
 h3 {
   margin-top: 0;
   margin-bottom: 0;
-}
-td {
-  width: 10em;
 }
