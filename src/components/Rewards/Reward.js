@@ -17,12 +17,12 @@ export default function Reward({ customer, months }) {
       );
     }
   }, [transactionsData, customer]);
-  const getRewardForAmount = (amount) =>
-    amount > 100
-      ? 2 * (amount - 100)
-      : amount > 50 && amount < 100
-      ? amount - 50
-      : 0;
+  const getRewardForAmount = (amount) => {
+    if (amount > 100) return 2 * (amount - 100) + 1 * 50;
+    if (amount > 50 && amount < 100) return amount - 50;
+    return 0;
+  };
+
   const getRewardForMonth = useCallback(
     (customer, month) => {
       if (transactionsData) {

@@ -86,7 +86,7 @@ describe(`tests rewards component`, () => {
     const allTds = container.querySelectorAll("td");
 
     const rewardCellWithValue40 = Array.from(allTds).find(
-      (td) => td.textContent === "40"
+      (td) => td.textContent === "90"
     );
     expect(rewardCellWithValue40).toBeInTheDocument();
     const rewardCellWithValue20 = Array.from(allTds).find(
