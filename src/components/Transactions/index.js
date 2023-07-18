@@ -8,7 +8,7 @@ export default function Transactions() {
   return (
     <div className='transactions'>
       <h3>Transactions:</h3>
-      <Regenerate />
+      {/* <Regenerate /> */}
       <div className='transactions__filters'>
         <MonthFilter />
         <Search />

@@ -1,9 +1,9 @@
-import { createData } from "../data";
-
+import { createData } from "../data/data";
+import transactions from "../data/transactions.json";
 export const fetchTransactionsData = () => {
-  return new Promise((res, rej) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      res(createData());
+      resolve(transactions);
     }, 1000);
   });
 };

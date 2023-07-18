@@ -7,7 +7,7 @@ export default function Transaction({ rowNumber, transaction }) {
       <td>{rowNumber}.</td>
       <td>{customer}</td>
       <td>{`${moment(date).format("DD MMM, YYYY")}`}</td>
-      <td>{amount}</td>
+      <td>{amount ?? null}</td>
     </tr>
   );
 }
