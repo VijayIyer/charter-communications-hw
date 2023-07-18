@@ -1,5 +1,5 @@
-import { createData } from "../data";
-import transactions from "../transactions.json";
+import { createData } from "../data/data";
+import transactions from "../data/transactions.json";
 export const fetchTransactionsData = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
