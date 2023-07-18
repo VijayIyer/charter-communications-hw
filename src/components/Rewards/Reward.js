@@ -8,6 +8,7 @@ export default function Reward({ customer, months }) {
     if (transactionsData) {
       setTotal(
         transactionsData
+          .filter((transaction) => parseInt(transaction.amount))
           .filter((transaction) => transaction.customer === customer)
           .reduce(
             (total, transaction) =>
@@ -27,6 +28,7 @@ export default function Reward({ customer, months }) {
     (customer, month) => {
       if (transactionsData) {
         return transactionsData
+          .filter((transaction) => transaction.amount)
           .filter(
             (transaction) =>
               transaction.customer === customer &&
