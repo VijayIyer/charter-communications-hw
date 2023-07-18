@@ -2,11 +2,11 @@ const allowedAmountRange = {
   min: 0,
   max: 200,
 };
-const allowedTransactionDateRange = {
-  min: new Date(2023, 7, 1),
-  max: new Date(2023, 9, 30),
+const allowedTransactionMonthRange = {
+  min: new Date(2023, 1, 1),
+  max: new Date(2023, 3, 30),
 };
-const numberOfTransactions = 500;
+const numberOfTransactions = 100;
 const customers = ["A", "B", "C", "D", "E", "F", "G"];
 
 class Transaction {
@@ -26,7 +26,7 @@ function getRandomArbitrary(min, max) {
 function getRandomDate(from, to) {
   from = from.getTime();
   to = to.getTime();
-  return new Date(from + Math.random() * (to - from));
+  return new Date(from + Math.random() * (to - from)).toUTCString();
 }
 
 const createData = () => {
@@ -37,14 +37,13 @@ const createData = () => {
         i,
         chooseRandomItemFromArray(customers),
         getRandomDate(
-          allowedTransactionDateRange.min,
-          allowedTransactionDateRange.max
+          allowedTransactionMonthRange.min,
+          allowedTransactionMonthRange.max
         ),
         getRandomArbitrary(allowedAmountRange.min, allowedAmountRange.max)
       )
     );
   }
-  //   console.log(JSON.stringify(transactions));
   return transactions;
 };
 export { createData };
