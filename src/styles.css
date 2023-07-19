@@ -18,8 +18,8 @@ body {
   height: 100%;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 5em;
 }
 .column {
   display: flex;
@@ -28,13 +28,13 @@ body {
   width: 50%;
 }
 table {
-  height: 200px;
+  height: 25em;
+  width: 35em;
   border-collapse: collapse;
   margin: 25px 0;
   border-radius: 5px 5px 0 0;
   font-size: 0.9em;
   font-family: sans-serif;
-  min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 table thead tr {
@@ -45,6 +45,7 @@ table thead tr {
 table th,
 table td {
   padding: 12px 15px;
+  width: 10em;
 }
 table tbody tr {
   border-bottom: 1px solid #dddddd;
@@ -56,4 +57,9 @@ table tbody tr:nth-of-type(even) {
 
 table tbody tr:last-of-type {
   border-bottom: 2px solid var(--ma);
+}
+@media screen and (max-width: 800px) {
+  .column {
+    width: 100%;
+  }
 }
