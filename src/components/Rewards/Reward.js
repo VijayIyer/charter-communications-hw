@@ -1,8 +1,9 @@
 import { useContext, useState, useEffect, useCallback } from "react";
-import { dataContext } from "../../context/dataContext";
+
 import moment from "moment";
+import { transactionsContext } from "../../context/transactionsContext";
 export default function Reward({ customer, months }) {
-  const { transactionsData } = useContext(dataContext);
+  const { transactionsData } = useContext(transactionsContext);
   const [total, setTotal] = useState(0);
   useEffect(() => {
     if (transactionsData) {

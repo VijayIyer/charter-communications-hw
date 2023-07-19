@@ -1,12 +1,11 @@
 import { useState, useContext, useEffect } from "react";
-import { dataContext } from "../../context/dataContext";
 import { getUniqueElements, monthNames } from "../../utils";
 import moment from "moment";
 import { transactionsContext } from "../../context/transactionsContext";
 export default function MonthFilter() {
   const [months, setMonths] = useState([]);
-  const { monthFilter, setMonthFilter } = useContext(transactionsContext);
-  const { transactionsData } = useContext(dataContext);
+  const { transactionsData, monthFilter, setMonthFilter } =
+    useContext(transactionsContext);
   useEffect(() => {
     if (transactionsData) {
       setMonths(

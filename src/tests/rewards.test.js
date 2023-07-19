@@ -1,23 +1,23 @@
 import RewardsTable from "../components/Rewards/RewardsTable";
-import { dataContext } from "../context/dataContext";
+import { transactionsContext } from "../context/transactionsContext";
 import { render, screen, fireEvent } from "@testing-library/react";
 describe(`tests rewards component`, () => {
-  test(`A button with text 'Show Rewards' is rendered initially`, () => {
+  it(`A button with text 'Show Rewards' is rendered initially`, () => {
     const { container } = render(
-      <dataContext.Provider value={{ transactionsData: null }}>
+      <transactionsContext.Provider value={{ transactionsData: null }}>
         <RewardsTable />
-      </dataContext.Provider>
+      </transactionsContext.Provider>
     );
     expect(screen.getByText("Show Rewards")).toBeInTheDocument();
     expect(
       container.getElementsByClassName("rewards__show-btn").length
     ).toEqual(1);
   });
-  test(`the button with text 'Show Rewards' is not present after it is clicked`, () => {
+  it(`the button with text 'Show Rewards' is not present after it is clicked`, () => {
     const { container } = render(
-      <dataContext.Provider value={{ transactionsData: null }}>
+      <transactionsContext.Provider value={{ transactionsData: null }}>
         <RewardsTable />
-      </dataContext.Provider>
+      </transactionsContext.Provider>
     );
     expect(
       container.getElementsByClassName("rewards__show-btn").length
@@ -28,11 +28,11 @@ describe(`tests rewards component`, () => {
       container.getElementsByClassName("rewards__show-btn").length
     ).toEqual(0);
   });
-  test(`rewards table is shown after 'Show Rewards' button is clicked`, () => {
+  it(`rewards table is shown after 'Show Rewards' button is clicked`, () => {
     const { container } = render(
-      <dataContext.Provider value={{ transactionsData: null }}>
+      <transactionsContext.Provider value={{ transactionsData: null }}>
         <RewardsTable />
-      </dataContext.Provider>
+      </transactionsContext.Provider>
     );
     expect(container.getElementsByClassName("rewards__table").length).toEqual(
       0
@@ -44,7 +44,7 @@ describe(`tests rewards component`, () => {
     );
   });
 
-  test(`rewards table shows correct calculation of rewards amount given the transactions`, () => {
+  it(`rewards table shows correct calculation of rewards amount given the transactions`, () => {
     const transactions = [
       {
         customer: "Andrew",
@@ -58,7 +58,7 @@ describe(`tests rewards component`, () => {
       },
     ];
     const { container } = render(
-      <dataContext.Provider
+      <transactionsContext.Provider
         value={{
           transactionsData: transactions,
           loadingTransactions: false,
@@ -66,7 +66,7 @@ describe(`tests rewards component`, () => {
         }}
       >
         <RewardsTable />
-      </dataContext.Provider>
+      </transactionsContext.Provider>
     );
     expect(container.getElementsByClassName("rewards__table").length).toEqual(
       0

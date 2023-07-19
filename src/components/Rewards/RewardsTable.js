@@ -1,13 +1,13 @@
-import { dataContext } from "../../context/dataContext";
 import { getUniqueElements, monthNames } from "../../utils";
 import "./styles.css";
 import { useContext, useState, useEffect } from "react";
 import moment from "moment";
 import Reward from "./Reward";
+import { transactionsContext } from "../../context/transactionsContext";
 export default function RewardsTable() {
   const [showRewardsTable, setShowRewards] = useState(false);
 
-  const { transactionsData } = useContext(dataContext);
+  const { transactionsData } = useContext(transactionsContext);
   const [months, setMonths] = useState([]);
   const [customers, setCustomers] = useState([]);
   useEffect(() => {

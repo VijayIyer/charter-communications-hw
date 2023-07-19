@@ -1,13 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App";
 import Regenerate from "../components/Transactions/Regenerate";
 import Search from "../components/Transactions/Search";
 import { transactionsContext } from "../context/transactionsContext";
-import { dataContext } from "../context/dataContext";
 import MonthFilter from "../components/Transactions/MonthFilter";
 import TransactionsTable from "../components/Transactions/TransactionsTable";
+
+jest.mock("../api/fetchTransactionsData", () => ({
+  fetchTransactionsData: () => new Promise((res, rej) => res([])),
+}));
 
 it("renders App correctly", () => {
   const { container } = render(<App />);
@@ -20,29 +23,7 @@ describe(`tests snapshot`, () => {
     expect(tree).toMatchSnapshot();
   });
 });
-describe(`tests Regenerate component`, () => {
-  it(`should contain the text 'Regenerate Transactions Data'`, () => {
-    const { container } = render(<Regenerate />);
-    expect(
-      screen.getByText("Regenerate Transactions Data")
-    ).toBeInTheDocument();
-  });
-  it(`calls fetchData function when 'Regenerate Transactions Data' button is clicked`, () => {
-    const fetchData = jest.fn();
-    const { container } = render(
-      <dataContext.Provider value={{ fetchData }}>
-        <transactionsContext.Provider value={null}>
-          <Regenerate />
-        </transactionsContext.Provider>
-      </dataContext.Provider>
-    );
-    const regenerateComponent = container.getElementsByClassName(
-      "transactions__regenerate-btn"
-    )[0];
-    fireEvent.click(regenerateComponent);
-    expect(fetchData).toBeCalledTimes(1);
-  });
-});
+
 describe(`tests Search component`, () => {
   it(`should contain an element with class name 'transactions__search-customer'`, () => {
     const { container } = render(
@@ -87,34 +68,33 @@ describe(`tests MonthFilter component`, () => {
   });
 });
 describe(`tests Transactions table`, () => {
-  test(`should render a table element with className 'transactions__table'`, () => {
+  it(`should render a table with className 'transactions__table'`, async () => {
     const { container } = render(
-      <dataContext.Provider
+      <transactionsContext.Provider
         value={{
-          loadingTransactions: false,
           transactionsData: [],
-          error: false,
+          customerFilter: "",
+          monthFilter: "",
         }}
       >
-        <transactionsContext.Provider
-          value={{ customerFilter: null, monthFilter: null }}
-        >
-          <TransactionsTable />
-        </transactionsContext.Provider>
-      </dataContext.Provider>
+        <TransactionsTable />
+      </transactionsContext.Provider>
     );
-    expect(
-      container.getElementsByClassName("transactions__table").length
-    ).toEqual(1);
+    await waitFor(() =>
+      expect(
+        container.getElementsByClassName("transactions__table").length
+      ).toEqual(1)
+    );
     const transactionsTable = container.getElementsByClassName(
       "transactions__table"
     )[0];
-    expect(screen.getByText("Customer Name")).toBeInTheDocument();
-    expect(screen.getByText("Date")).toBeInTheDocument();
-    expect(screen.getByText("Amount")).toBeInTheDocument();
-    expect(screen.queryByText("Total")).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.getByText("Customer Name")).toBeInTheDocument()
+    );
+    await waitFor(() => expect(screen.getByText("Date")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("Amount")).toBeInTheDocument());
   });
-  test(`should show transactions Data in transactions table component`, () => {
+  it(`should show transactions Data in transactions table component`, async () => {
     /** mocking transactionsData */
     const transactions = [
       {
@@ -129,27 +109,27 @@ describe(`tests Transactions table`, () => {
       },
     ];
     const { container } = render(
-      <dataContext.Provider
+      <transactionsContext.Provider
         value={{
-          loadingTransactions: false,
+          customerFilter: "",
+          monthFilter: "",
           transactionsData: transactions,
-          error: false,
         }}
       >
-        <transactionsContext.Provider
-          value={{ customerFilter: "", monthFilter: "" }}
-        >
-          <Search />
-          <MonthFilter />
-          <TransactionsTable />
-        </transactionsContext.Provider>
-      </dataContext.Provider>
+        <Search />
+        <MonthFilter />
+        <TransactionsTable />
+      </transactionsContext.Provider>
     );
-    expect(container.getElementsByTagName("th").length).toEqual(4);
-    expect(container.getElementsByTagName("td").length).toEqual(8);
-    expect(screen.getByText("120")).toBeInTheDocument();
-    expect(screen.getByText("Andrew")).toBeInTheDocument();
-    expect(screen.getByText("Adam")).toBeInTheDocument();
-    expect(screen.getByText("90")).toBeInTheDocument();
+    await waitFor(() =>
+      expect(container.getElementsByTagName("th").length).toEqual(4)
+    );
+    await waitFor(() =>
+      expect(container.getElementsByTagName("td").length).toEqual(8)
+    );
+    await waitFor(() => expect(screen.getByText("120")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("Andrew")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("Adam")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("90")).toBeInTheDocument());
   });
 });

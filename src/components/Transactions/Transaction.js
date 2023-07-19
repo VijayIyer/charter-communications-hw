@@ -1,4 +1,3 @@
-import { monthNames } from "../../utils/constants";
 import moment from "moment";
 export default function Transaction({ rowNumber, transaction }) {
   const { customer, date, amount } = transaction;

@@ -1,14 +1,15 @@
 import "./styles.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { monthNames } from "../../utils";
+import { fetchTransactionsData } from "../../api/fetchTransactionsData";
 import Transaction from "./Transaction";
-import { dataContext } from "../../context/dataContext";
 import { transactionsContext } from "../../context/transactionsContext";
 export default function TransactionsTable() {
-  const { loadingTransactions, transactionsData, error } =
-    useContext(dataContext);
-  const { customerFilter, monthFilter } = useContext(transactionsContext);
+  const { customerFilter, monthFilter, transactionsData, setTransactionsData } =
+    useContext(transactionsContext);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const renderTransactions = () => {
     return transactionsData
       .filter((transaction) => {
@@ -33,9 +34,17 @@ export default function TransactionsTable() {
         );
       });
   };
-
+  useEffect(() => {
+    setLoading(true);
+    fetchTransactionsData()
+      .then((data) => {
+        setLoading(false);
+        setTransactionsData(data);
+      })
+      .catch((err) => setError(error));
+  }, []);
   if (error) return <h1>Error loading Transactions!!!</h1>;
-  if (loadingTransactions) return <h1>Loading Transactions...</h1>;
+  if (loading) return <h1>Loading Transactions...</h1>;
   return (
     <div className='transactions__table-wrapper'>
       <table className='transactions__table'>
