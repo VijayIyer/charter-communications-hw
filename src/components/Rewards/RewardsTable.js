@@ -32,19 +32,21 @@ export default function RewardsTable() {
   }, [transactionsData]);
   if (!showRewardsTable)
     return (
-      <div className='rewards'>
-        <button
-          className='rewards__show-btn'
-          onClick={() => setShowRewards((value) => !value)}
-        >
-          Show Rewards
-        </button>
+      <div className='column'>
+        <div>
+          <button
+            className='rewards__show-btn'
+            onClick={() => setShowRewards((value) => !value)}
+          >
+            Show Rewards
+          </button>
+        </div>
       </div>
     );
 
   return (
-    <div className='rewards'>
-      <h3>Rewards:</h3>
+    <div className='column'>
+      <h3 className='rewards__header'>Rewards</h3>
       <div className='rewards__table-wrapper'>
         <table className='rewards__table'>
           <thead>

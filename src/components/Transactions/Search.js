@@ -5,12 +5,12 @@ export default function Search() {
   const { customerFilter, setCustomerFilter } = useContext(transactionsContext);
   return (
     <div className='transactions__search-customer'>
-      <label className='transactions__search-customer__label'>Customer</label>
       <input
         type='text'
+        id='input'
         className='transactions__search-customer__input'
         value={customerFilter}
-        placeholder=' '
+        placeholder='Filter with Customer Name'
         onChange={(e) => setCustomerFilter(e.target.value)}
       />
     </div>

@@ -1,38 +1,17 @@
 /* styles from https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro */
-.rewards {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 5px;
-}
 
 .rewards__show-btn {
-  background-color: var(--primary-bg-color);
-  color: var(--primary-font-color);
-  cursor: pointer;
   border: none;
-  border-radius: 1em;
-  padding: 1em;
-}
-
-.rewards__table {
-  border-collapse: collapse;
-  width: 100%;
-  display: block;
-  height: 200px;
-  margin-bottom: 1em;
-}
-.rewards__table th {
-  background-color: var(--header-bg-color);
-}
-
-.rewards__table td,
-th {
-  border: 1px solid #dddddd;
-  background-color: var(--primary-bg-color);
-  color: var(--primary-font-color);
-  cursor: pointer;
-  text-align: left;
-  padding: 8px;
+  border-radius: 5px 5px;
+  color: white;
+  padding: 1em 2em;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+.rewards__header {
+  color: var(--main-color);
 }

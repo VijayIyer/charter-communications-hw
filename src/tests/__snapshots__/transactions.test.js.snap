@@ -5,43 +5,45 @@ exports[`tests snapshot should match snapshot 1`] = `
   className="App"
 >
   <div
-    className="transactions"
+    className="column"
   >
-    <h3>
-      Transactions:
-    </h3>
-    <button
-      className="transactions__regenerate-btn"
-      onClick={[Function]}
+    <h3
+      className="transactions__header"
     >
-      Regenerate Transactions Data
-    </button>
+      Transactions
+    </h3>
     <div
       className="transactions__filters"
     >
-      <div>
-        <label>
-          See Transactions in Month:
-        </label>
+      <h3>
+        Filters
+      </h3>
+      <div
+        className="transactions__month-filter"
+      >
         <select
-          className="transactions__month-filter"
+          className="transactions__month-filter__select"
           onChange={[Function]}
           value=""
         >
           <option
             value=""
           >
-            --Select a month ---
+            Filter by Month
           </option>
         </select>
+        <span
+          className="highlight"
+        />
       </div>
-      <div>
-        <label>
-          Customer:
-        </label>
+      <div
+        className="transactions__search-customer"
+      >
         <input
-          className="transactions__search-customer"
+          className="transactions__search-customer__input"
+          id="input"
           onChange={[Function]}
+          placeholder="Filter with Customer Name"
           type="text"
           value=""
         />
@@ -72,14 +74,16 @@ exports[`tests snapshot should match snapshot 1`] = `
     </div>
   </div>
   <div
-    className="rewards"
+    className="column"
   >
-    <button
-      className="rewards__show-btn"
-      onClick={[Function]}
-    >
-      Show Rewards
-    </button>
+    <div>
+      <button
+        className="rewards__show-btn"
+        onClick={[Function]}
+      >
+        Show Rewards
+      </button>
+    </div>
   </div>
 </div>
 `;

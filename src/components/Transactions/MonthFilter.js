@@ -20,20 +20,20 @@ export default function MonthFilter() {
     }
   }, [transactionsData]);
   return (
-    <div>
-      <label>Month</label>
+    <div className='transactions__month-filter'>
       <select
-        className='transactions__month-filter'
+        className='transactions__month-filter__select'
         onChange={(e) => setMonthFilter(e.target.value)}
         value={monthFilter}
       >
-        <option value=''>--Select a month ---</option>
+        <option value=''>Filter by Month</option>
         {months.map((month) => (
           <option key={month} value={month}>
             {month}
           </option>
         ))}
       </select>
+      <span className='highlight'></span>
     </div>
   );
 }

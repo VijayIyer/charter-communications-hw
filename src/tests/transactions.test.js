@@ -11,7 +11,7 @@ import TransactionsTable from "../components/Transactions/TransactionsTable";
 
 it("renders App correctly", () => {
   const { container } = render(<App />);
-  expect(screen.getByText("Transactions:")).toBeInTheDocument();
+  expect(screen.getByText("Transactions")).toBeInTheDocument();
   expect(screen.getByText("Show Rewards")).toBeInTheDocument();
 });
 describe(`tests snapshot`, () => {
@@ -44,17 +44,6 @@ describe(`tests Regenerate component`, () => {
   });
 });
 describe(`tests Search component`, () => {
-  it(`should contain label element with the text 'Customer:'`, () => {
-    const { container } = render(
-      <transactionsContext.Provider
-        value={{ customerFilter: null, setCustomerFilter: null }}
-      >
-        <Search />
-      </transactionsContext.Provider>
-    );
-    expect(screen.getByText("Customer:")).toBeInTheDocument();
-    expect(container.getElementsByTagName("label").length).toEqual(1);
-  });
   it(`should contain an element with class name 'transactions__search-customer'`, () => {
     const { container } = render(
       <transactionsContext.Provider
@@ -69,7 +58,7 @@ describe(`tests Search component`, () => {
   });
 });
 describe(`tests MonthFilter component`, () => {
-  it(`should contain label with text 'See Transactions in Month:' and a select element`, () => {
+  it(`should contain a select element with default text 'Filter by Month'`, () => {
     const { container } = render(
       <transactionsContext.Provider
         value={{ monthFilter: null, setMonthFilter: null }}
@@ -77,8 +66,8 @@ describe(`tests MonthFilter component`, () => {
         <MonthFilter />
       </transactionsContext.Provider>
     );
-    expect(screen.getByText("See Transactions in Month:")).toBeInTheDocument();
-    expect(container.getElementsByTagName("label").length).toEqual(1);
+    expect(screen.getByText("Filter by Month")).toBeInTheDocument();
+
     expect(container.getElementsByTagName("select").length).toEqual(1);
   });
   it(`should call setMonthFilter context variable when selection is changed in monthFilter`, () => {
