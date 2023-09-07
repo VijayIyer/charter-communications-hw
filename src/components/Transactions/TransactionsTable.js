@@ -1,13 +1,13 @@
 import "./styles.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import { monthNames } from "../../utils";
 import { fetchTransactionsData } from "../../api/fetchTransactionsData";
 import Transaction from "./Transaction";
-import { transactionsContext } from "../../context/transactionsContext";
+import { useTransactions } from "../../context/transactionsContext";
 export default function TransactionsTable() {
   const { customerFilter, monthFilter, transactionsData, setTransactionsData } =
-    useContext(transactionsContext);
+    useTransactions();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const renderTransactions = () => {
@@ -42,7 +42,7 @@ export default function TransactionsTable() {
         setTransactionsData(data);
       })
       .catch((err) => setError(error));
-  }, []);
+  }, [error, setTransactionsData]);
   if (error) return <h1>Error loading Transactions!!!</h1>;
   if (loading) return <h1>Loading Transactions...</h1>;
   return (
