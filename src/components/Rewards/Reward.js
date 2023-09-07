@@ -1,53 +1,23 @@
-import { useContext, useState, useEffect, useCallback } from "react";
-
-import moment from "moment";
-import { transactionsContext } from "../../context/transactionsContext";
+import { getRewardForAmount } from "../../utils/getRewardForAmount";
+import { getRewardForMonth } from "../../utils/getRewardForMonth";
+import { useTransactions } from "../../context/transactionsContext";
 export default function Reward({ customer, months }) {
-  const { transactionsData } = useContext(transactionsContext);
-  const [total, setTotal] = useState(0);
-  useEffect(() => {
-    if (transactionsData) {
-      setTotal(
-        transactionsData
-          .filter((transaction) => parseInt(transaction.amount))
-          .filter((transaction) => transaction.customer === customer)
-          .reduce(
-            (total, transaction) =>
-              total + getRewardForAmount(transaction.amount),
-            0
-          )
-      );
-    }
-  }, [transactionsData, customer]);
-  const getRewardForAmount = (amount) => {
-    if (amount > 100) return 2 * (amount - 100) + 1 * 50;
-    if (amount > 50 && amount < 100) return amount - 50;
-    return 0;
-  };
+  const { transactionsData } = useTransactions();
 
-  const getRewardForMonth = useCallback(
-    (customer, month) => {
-      if (transactionsData) {
-        return transactionsData
-          .filter((transaction) => transaction.amount)
-          .filter(
-            (transaction) =>
-              transaction.customer === customer &&
-              moment(transaction.date).format("M") === month
-          )
-          .reduce((total, transaction) => {
-            return total + getRewardForAmount(transaction.amount);
-          }, 0);
-      }
-      return 0;
-    },
-    [transactionsData]
-  );
+  const total = transactionsData
+    .filter((transaction) => transaction.customer === customer)
+    .reduce(
+      (total, transaction) => total + getRewardForAmount(transaction.amount),
+      0
+    );
+
   return (
     <tr>
       <td>{customer}</td>
       {months.map((month) => (
-        <td key={month}>{getRewardForMonth(customer, month)}</td>
+        <td key={month}>
+          {getRewardForMonth(transactionsData, customer, month)}
+        </td>
       ))}
       <td>{total}</td>
     </tr>
