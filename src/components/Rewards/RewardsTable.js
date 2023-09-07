@@ -1,6 +1,6 @@
 import { getUniqueElements, monthNames } from "../../utils";
 import "./styles.css";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useMemo } from "react";
 import moment from "moment";
 import Reward from "./Reward";
 import { transactionsContext } from "../../context/transactionsContext";
@@ -8,28 +8,23 @@ export default function RewardsTable() {
   const [showRewardsTable, setShowRewards] = useState(false);
 
   const { transactionsData } = useContext(transactionsContext);
-  const [months, setMonths] = useState([]);
-  const [customers, setCustomers] = useState([]);
-  useEffect(() => {
-    if (transactionsData) {
-      setMonths(
-        getUniqueElements(
-          transactionsData.map((transaction) =>
-            moment(transaction.date).format("M")
-          )
+  const months = useMemo(
+    () =>
+      getUniqueElements(
+        transactionsData.map((transaction) =>
+          moment(transaction.date).format("M")
         )
-      );
-    }
-  }, [transactionsData]);
-  useEffect(() => {
-    if (transactionsData) {
-      setCustomers(
-        getUniqueElements(
-          transactionsData.map((transaction) => transaction.customer)
-        )
-      );
-    }
-  }, [transactionsData]);
+      ),
+    [transactionsData]
+  );
+  const customers = useMemo(
+    () =>
+      getUniqueElements(
+        transactionsData.map((transaction) => transaction.customer)
+      ),
+    [transactionsData]
+  );
+
   if (!showRewardsTable)
     return (
       <div className='column'>
