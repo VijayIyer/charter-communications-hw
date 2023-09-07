@@ -42,7 +42,11 @@ describe(`tests MonthFilter component`, () => {
   it(`should contain a select element with default text 'Filter by Month'`, () => {
     const { container } = render(
       <transactionsContext.Provider
-        value={{ monthFilter: null, setMonthFilter: null }}
+        value={{
+          transactionsData: [],
+          monthFilter: null,
+          setMonthFilter: null,
+        }}
       >
         <MonthFilter />
       </transactionsContext.Provider>
@@ -57,6 +61,7 @@ describe(`tests MonthFilter component`, () => {
       <transactionsContext.Provider
         value={{
           setMonthFilter,
+          transactionsData: [],
         }}
       >
         <MonthFilter />

@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 describe(`tests rewards component`, () => {
   it(`A button with text 'Show Rewards' is rendered initially`, () => {
     const { container } = render(
-      <transactionsContext.Provider value={{ transactionsData: null }}>
+      <transactionsContext.Provider value={{ transactionsData: [] }}>
         <RewardsTable />
       </transactionsContext.Provider>
     );
@@ -15,7 +15,7 @@ describe(`tests rewards component`, () => {
   });
   it(`the button with text 'Show Rewards' is not present after it is clicked`, () => {
     const { container } = render(
-      <transactionsContext.Provider value={{ transactionsData: null }}>
+      <transactionsContext.Provider value={{ transactionsData: [] }}>
         <RewardsTable />
       </transactionsContext.Provider>
     );
@@ -30,7 +30,7 @@ describe(`tests rewards component`, () => {
   });
   it(`rewards table is shown after 'Show Rewards' button is clicked`, () => {
     const { container } = render(
-      <transactionsContext.Provider value={{ transactionsData: null }}>
+      <transactionsContext.Provider value={{ transactionsData: [] }}>
         <RewardsTable />
       </transactionsContext.Provider>
     );
