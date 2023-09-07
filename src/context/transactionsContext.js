@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 export const transactionsContext = createContext();
 export const TransactionsProvider = ({ children }) => {
   const [customerFilter, setCustomerFilter] = useState("");
@@ -20,3 +20,4 @@ export const TransactionsProvider = ({ children }) => {
     </transactionsContext.Provider>
   );
 };
+export const useTransactions = () => useContext(transactionsContext);
