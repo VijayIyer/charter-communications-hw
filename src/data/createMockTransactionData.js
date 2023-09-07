@@ -29,7 +29,7 @@ function getRandomDate(from, to) {
   return new Date(from + Math.random() * (to - from)).toUTCString();
 }
 
-const createData = () => {
+const createMockTransactionData = () => {
   let transactions = [];
   for (let i = 0; i < numberOfTransactions; i++) {
     transactions.push(
@@ -46,4 +46,4 @@ const createData = () => {
   }
   return transactions;
 };
-export { createData };
+export { createMockTransactionData };
