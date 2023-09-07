@@ -1,23 +1,19 @@
-import { useState, useContext, useEffect } from "react";
-import { getUniqueElements, monthNames } from "../../utils";
+import { useMemo } from "react";
+import { getUniqueElements, MONTHNAMES } from "../../utils";
 import moment from "moment";
-import { transactionsContext } from "../../context/transactionsContext";
+import { useTransactions } from "../../context/transactionsContext";
 export default function MonthFilter() {
-  const [months, setMonths] = useState([]);
-  const { transactionsData, monthFilter, setMonthFilter } =
-    useContext(transactionsContext);
-  useEffect(() => {
-    if (transactionsData) {
-      setMonths(
-        getUniqueElements(
-          transactionsData.map(
-            (transaction) =>
-              monthNames[moment(transaction.date).format("M") - 1]
-          )
+  const { transactionsData, monthFilter, setMonthFilter } = useTransactions();
+  const months = useMemo(
+    () =>
+      getUniqueElements(
+        transactionsData.map(
+          (transaction) => MONTHNAMES[moment(transaction.date).format("M") - 1]
         )
-      );
-    }
-  }, [transactionsData]);
+      ),
+    [transactionsData]
+  );
+
   return (
     <div className='transactions__month-filter'>
       <select

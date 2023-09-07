@@ -1,13 +1,13 @@
-import { getUniqueElements, monthNames } from "../../utils";
+import { getUniqueElements, MONTHNAMES } from "../../utils";
 import "./styles.css";
-import { useContext, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import moment from "moment";
 import Reward from "./Reward";
-import { transactionsContext } from "../../context/transactionsContext";
+import { useTransactions } from "../../context/transactionsContext";
 export default function RewardsTable() {
   const [showRewardsTable, setShowRewards] = useState(false);
 
-  const { transactionsData } = useContext(transactionsContext);
+  const { transactionsData } = useTransactions();
   const months = useMemo(
     () =>
       getUniqueElements(
@@ -48,7 +48,7 @@ export default function RewardsTable() {
             <tr>
               <th>Customer Name</th>
               {months.map((month) => (
-                <th key={month}>{monthNames[month - 1]}</th>
+                <th key={month}>{MONTHNAMES[month - 1]}</th>
               ))}
               <th>Total</th>
             </tr>
