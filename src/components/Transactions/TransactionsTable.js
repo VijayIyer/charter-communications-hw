@@ -1,7 +1,7 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import moment from "moment";
-import { monthNames } from "../../utils";
+import { MONTHNAMES } from "../../utils";
 import { fetchTransactionsData } from "../../api/fetchTransactionsData";
 import Transaction from "./Transaction";
 import { useTransactions } from "../../context/transactionsContext";
@@ -21,7 +21,7 @@ export default function TransactionsTable() {
       .filter((transaction) => {
         if (monthFilter === "") return true;
         return (
-          monthNames[moment(transaction.date).format("M") - 1] === monthFilter
+          MONTHNAMES[moment(transaction.date).format("M") - 1] === monthFilter
         );
       })
       .map((transaction, index) => {

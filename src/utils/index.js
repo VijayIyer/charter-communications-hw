@@ -1,3 +1,3 @@
 import { getUniqueElements } from "./getUniqueElements";
-import { monthNames } from "./constants";
-export { getUniqueElements, monthNames };
+import { MONTHNAMES } from "./constants";
+export { getUniqueElements, MONTHNAMES };
