@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { transactionsContext } from "../../context/transactionsContext";
-import { createData } from "../../data/data";
+import { createMockTransactionData } from "../../data/createMockTransactionData";
 export default function Regenerate() {
   const { setTransactionsData } = useContext(transactionsContext);
   const fetchData = () => {
-    setTimeout(() => createData(), 1000).then((data) =>
-      setTransactionsData(data)
-    );
+    createMockTransactionData().then((data) => setTransactionsData(data));
   };
 
   return (
